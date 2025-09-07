@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, MapPin } from "lucide-react";
+import { Menu, X, MapPin, LogOut } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, signOut } = useAuth();
 
   const navItems = [
     { href: "/solutions", label: "Solutions" },
@@ -41,8 +44,24 @@ const Navbar = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost">Sign In</Button>
-            <Button variant="gold">Book Demo</Button>
+            {user ? (
+              <>
+                <span className="text-sm text-muted-foreground">
+                  Welcome, {user.email}
+                </span>
+                <Button variant="ghost" onClick={signOut}>
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Sign Out
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button variant="ghost" asChild>
+                  <Link to="/auth">Sign In</Link>
+                </Button>
+                <Button variant="gold">Book Demo</Button>
+              </>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -72,8 +91,24 @@ const Navbar = () => {
                 </a>
               ))}
               <div className="flex flex-col space-y-2 px-3 pt-4">
-                <Button variant="ghost" className="justify-start">Sign In</Button>
-                <Button variant="gold" className="justify-start">Book Demo</Button>
+                {user ? (
+                  <>
+                    <span className="text-sm text-muted-foreground px-3 py-2">
+                      Welcome, {user.email}
+                    </span>
+                    <Button variant="ghost" className="justify-start" onClick={signOut}>
+                      <LogOut className="w-4 h-4 mr-2" />
+                      Sign Out
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button variant="ghost" className="justify-start" asChild>
+                      <Link to="/auth">Sign In</Link>
+                    </Button>
+                    <Button variant="gold" className="justify-start">Book Demo</Button>
+                  </>
+                )}
               </div>
             </div>
           </div>
