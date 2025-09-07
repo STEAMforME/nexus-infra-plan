@@ -30,7 +30,7 @@ const SolutionsPreview = () => {
   ];
 
   return (
-    <section className="py-20 bg-secondary/50">
+    <section id="solutions" className="py-20 bg-secondary/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
@@ -71,9 +71,11 @@ const SolutionsPreview = () => {
                   ))}
                 </ul>
 
-                <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
-                  Learn More
-                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300" asChild>
+                  <a href="#platform">
+                    Learn More
+                    <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  </a>
                 </Button>
               </div>
             );

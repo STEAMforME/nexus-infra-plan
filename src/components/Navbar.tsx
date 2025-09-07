@@ -9,8 +9,8 @@ const Navbar = () => {
   const { user, signOut } = useAuth();
 
   const navItems = [
-    { href: "/solutions", label: "Solutions" },
-    { href: "/platform", label: "Platform" },
+    { href: "#solutions", label: "Solutions" },
+    { href: "#platform", label: "Platform" },
     { href: "/compliance", label: "Compliance" },
     { href: "/case-studies", label: "Case Studies" },
     { href: "/about", label: "About" },
@@ -59,7 +59,9 @@ const Navbar = () => {
                 <Button variant="ghost" asChild>
                   <Link to="/auth">Sign In</Link>
                 </Button>
-                <Button variant="gold">Book Demo</Button>
+                <Button variant="gold" asChild>
+                  <Link to="/book-demo">Book Demo</Link>
+                </Button>
               </>
             )}
           </div>

@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { Play, ArrowRight } from "lucide-react";
 import dashboardImage from "@/assets/dashboard-hero.jpg";
 
@@ -31,13 +32,17 @@ const Hero = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
-              <Button variant="hero" size="lg" className="text-lg px-8 py-4">
-                Book a Demo
-                <ArrowRight className="ml-2 w-5 h-5" />
+              <Button variant="hero" size="lg" className="text-lg px-8 py-4" asChild>
+                <Link to="/book-demo">
+                  Book a Demo
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Link>
               </Button>
-              <Button variant="outline" size="lg" className="text-lg px-8 py-4 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground hover:text-primary">
-                <Play className="mr-2 w-5 h-5" />
-                See How It Works
+              <Button variant="outline" size="lg" className="text-lg px-8 py-4 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground hover:text-primary" asChild>
+                <a href="#platform">
+                  <Play className="mr-2 w-5 h-5" />
+                  See How It Works
+                </a>
               </Button>
             </div>
 

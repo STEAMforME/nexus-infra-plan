@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { 
   Map, 
@@ -58,7 +59,7 @@ const PlatformPreview = () => {
   ];
 
   return (
-    <section className="py-20 bg-background">
+    <section id="platform" className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
@@ -180,8 +181,10 @@ const PlatformPreview = () => {
                   </li>
                 ))}
               </ul>
-              <Button variant={index === 1 ? "gold" : "outline"} className="w-full">
-                {tier.name === "Custom" ? "Contact Sales" : "Get Started"}
+              <Button variant={index === 1 ? "gold" : "outline"} className="w-full" asChild>
+                <Link to="/book-demo">
+                  {tier.name === "Custom" ? "Contact Sales" : "Get Started"}
+                </Link>
               </Button>
             </Card>
           ))}
@@ -189,9 +192,11 @@ const PlatformPreview = () => {
 
         {/* CTA */}
         <div className="text-center">
-          <Button variant="hero" size="lg" className="text-lg px-8 py-4">
-            Explore Full Platform
-            <ArrowRight className="ml-2 w-5 h-5" />
+          <Button variant="hero" size="lg" className="text-lg px-8 py-4" asChild>
+            <Link to="/book-demo">
+              Explore Full Platform
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Link>
           </Button>
         </div>
       </div>
