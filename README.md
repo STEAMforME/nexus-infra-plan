@@ -2,15 +2,28 @@
 
 Website: https://www.STEAMforME.org
 
+## Overview
+
+Nexus Infra Plan is a React + Vite application for showcasing STEAM for ME’s smart infrastructure platform: safety simulation, zoning intelligence, and compliance workflows. The home page includes wired CTAs and a Book Demo flow.
+
 ## Stack
 
 - Vite + React + TypeScript
 - Tailwind CSS + shadcn/ui
-- Supabase (auth, data)
+- Supabase (auth and session)
+
+## Features
+
+- Auth pages backed by Supabase
+- Home page CTAs wired (Book Demo, Learn More)
+- New route: `/book-demo` (email CTA + scheduling placeholder)
+- Smooth in‑page scrolling to sections (`#solutions`, `#platform`)
+- Route-based code splitting (lazy-loaded pages)
+- Centralized design tokens in `src/index.css`
 
 ## Getting Started
 
-Prereqs: Node.js and npm
+Prereqs: Node.js ≥ 18 and npm
 
 ```sh
 git clone <YOUR_GIT_URL>
@@ -20,24 +33,41 @@ npm ci
 npm run dev
 ```
 
-Dev server runs at http://localhost:8080 (or next available port).
-
-## Scripts
-
-- `npm run dev` — start Vite dev server
-- `npm run build` — production build to `dist/`
-- `npm run preview` — preview the build locally
+Dev server: http://localhost:8080 (Vite will pick next port if busy).
 
 ## Environment
 
-Set the following in `.env`:
+Set these variables in `.env` (values are safe to expose in the client):
 
 ```
 VITE_SUPABASE_URL="https://YOUR_PROJECT.supabase.co"
 VITE_SUPABASE_PUBLISHABLE_KEY="YOUR_SUPABASE_ANON_KEY"
 ```
 
-## Notes
+Notes:
+- We removed hardcoded keys; rotate your anon key if it was previously committed.
+- Types for env vars live in `src/vite-env.d.ts`.
 
-- This repo uses client-side routing via React Router.
-- Supabase credentials are read from Vite env vars; no secrets are committed.
+## Scripts
+
+- `npm run dev` — start Vite dev server
+- `npm run build` — production build to `dist/`
+- `npm run preview` — preview the build locally
+- `npm run lint` — run ESLint
+
+## Deploy
+
+This is a static Vite build. Any static host works (Vercel, Netlify, Cloudflare Pages, S3+CloudFront, etc.).
+
+```sh
+npm run build
+npx serve dist  # or your host’s adapter
+```
+
+If deploying behind a CDN, ensure SPA fallback is enabled so React Router routes resolve to `/index.html`.
+
+## Project Notes
+
+- Branding: Meta tags in `index.html` reference `www.STEAMforME.org` images/handles.
+- Anchors: Navbar links to `#solutions` and `#platform` on the home page.
+- Routing: Add protected routes by wrapping components with an auth guard from `src/hooks/useAuth.tsx`.
